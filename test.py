@@ -1,39 +1,54 @@
-input_int = "5276823"
-m = 3
-input_list = []
-for i in input_int:
-    
-    input_list.append(int(i))
-    
-count = 0
-stack = []
+import sys
 
-for i in range(len(input_list)):
+sys.stdin = open(r"C:\Users\my\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 3\5. 수들의 합\in2.txt")
+input_list_num, target = list(map(int, input().split()))
+input_list = list(map(int, input().split()))
+# print(input_list_num, target)
+# print(input_list)
+
+def seq_sum(input_list):
     
-    picked_value = input_list.pop(0)
-    while stack and stack[-1] < picked_value :
+    total = 0
+    left_location = 0
+    right_location = 1
+    count = 0
+    while True:
         
-        stack.pop()
-        count = count + 1
-        if count == m:
+        total = sum(input_list[left_location : right_location])
+        if total < target :
+            
+            if right_location == len(input_list) and input_list[right_location - 1] == target:
+                
+                count = count + 1
+                break
+            
+            elif right_location == len(input_list) and input_list[right_location - 1] != target:
+                
+                break
+            
+            else :
+                
+                right_location = right_location + 1
+        
+        elif total == target:
+            
+            total = 0
+            count = count + 1
+            left_location = left_location + 1
+            
+        elif total > target:
+            
+            total = 0
+            left_location = left_location + 1
+            if left_location == right_location :
+                
+                right_location = right_location + 1
+        
+        if left_location == len(input_list) - 1:
             
             break
+            
+    print(count)
+
     
-    stack.append(picked_value)
-    if count == m:
-        
-        break
-        
-if len(input_list) != 0:
-    
-    for i in input_list:
-        
-        stack.append(i)
-        
-if count != m :
-    
-    for i in range(m - count):
-        
-        stack.pop()
-        
-print(stack)
+seq_sum(input_list)
