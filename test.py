@@ -1,15 +1,33 @@
 import sys
 
-sys.stdin = open(r"C:\Users\user\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 5\8. 단어찾기\in1.txt")
+sys.stdin = open(r"C:\Users\my\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 5\9. 아나그램(구글)\in1.txt")
 
-n = int(input())
-queue = sorted([input() for i in range(n)])
-wroten_list = sorted([input() for i in range(n-1)])
+input_list = [input() for i in range(2)]
+# print(input_list)
 
-for i in wroten_list:
+first = list(input_list[0])
+second = list(input_list[1])
+
+first_set = list(set(first))
+second_set = list(set(second))
+
+first_dict = {}
+second_dict = {}
+
+for i in first_set:
     
-    target = queue.pop(0)
-    if i != target:
-        
-        print(target)
-        break
+    count = first.count(i)
+    first_dict[i] = count
+    
+for i in second_set:
+    
+    count = second.count(i)
+    second_dict[i] = count
+    
+if first_dict == second_dict :
+
+    print("YES")
+    
+else :
+    
+    print("NO")
