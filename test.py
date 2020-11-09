@@ -1,33 +1,22 @@
 import sys
 
-sys.stdin = open(r"C:\Users\my\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 5\9. 아나그램(구글)\in1.txt")
+sys.stdin = open(r"C:\Users\user\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 6\1. 재귀함수란(이진수출력)\in1.txt")
+input_int = int(input()) 
+result = ""
 
-input_list = [input() for i in range(2)]
-# print(input_list)
-
-first = list(input_list[0])
-second = list(input_list[1])
-
-first_set = list(set(first))
-second_set = list(set(second))
-
-first_dict = {}
-second_dict = {}
-
-for i in first_set:
+def two(input_int):
     
-    count = first.count(i)
-    first_dict[i] = count
+    global result
+    if input_int == 1:
+        
+        left = input_int%2
+        result = result + str(left)
+        return
     
-for i in second_set:
+    moak = input_int//2
+    left = input_int%2
+    two(moak)
+    result = result + str(left)
     
-    count = second.count(i)
-    second_dict[i] = count
-    
-if first_dict == second_dict :
-
-    print("YES")
-    
-else :
-    
-    print("NO")
+two(input_int)
+print(result)
