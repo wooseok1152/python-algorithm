@@ -1,37 +1,40 @@
 import sys
 
-sys.stdin = open(r"C:\Users\user\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 6\5. 바둑이 승차\in1.txt")
+sys.stdin = open(r"C:\Users\my\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 6\5. 바둑이 승차\in1.txt")
 
-def dfs(index):
+def dfs(level, level_sum):
     
     global check_dog
     global input_list
-    global result_weights
     global max_weight
+    global target
     
-    if index == len(input_list):
+    if level_sum > max_weight : 
         
-        weight_sum = 0
-        for i in range(len(input_list)):
-            
-            if check_dog[i] == 1:
-                
-                weight_sum = weight_sum + input_list[i]
-        if weight_sum <= max_weight:
-            
-            result_weights.append(weight_sum)
         return
-    check_dog[index] = 1
-    dfs(index + 1)
-    check_dog[index] = 0
-    dfs(index + 1)
+    if level == len(input_list):
+        
+        if level_sum <= max_weight and level_sum >= target:
+            
+            target = level_sum
+        return
+    check_dog[level] = 1
+    level_sum = level_sum + input_list[level]
+    print(check_dog, level_sum)
+    dfs(level + 1, level_sum)
+    check_dog[level] = 0
+    level_sum = level_sum - input_list[level]
+    print(check_dog, level_sum)
+    dfs(level + 1, level_sum)
 
+    
 max_weight, dog_count = list(map(int, input().split()))
 input_list = [int(input()) for i in range(dog_count)]
 check_dog = {}
-result_weights = []
+target = 0
 for i in range(len(input_list)):
     
     check_dog[i] = 0
-dfs(0)
-print(max(sorted(result_weights)))
+print(check_dog, "\n")
+dfs(0, 0)
+print("\n",target)
