@@ -8,7 +8,13 @@ def dfs(level, level_sum):
     global input_list
     global max_weight
     global target
+    global input_list_sum
     
+    
+    if level != len(input_list) and (((input_list_sum - sum(input_list[:level + 1])) + (level_sum + input_list[level])) < target):
+        
+        print(((input_list_sum - sum(input_list[:level + 1])) + input_list[level]))
+        return
     if level_sum > max_weight : 
         
         return
@@ -27,9 +33,12 @@ def dfs(level, level_sum):
     print(check_dog, level_sum)
     dfs(level + 1, level_sum)
 
-    
-max_weight, dog_count = list(map(int, input().split()))
+max_weight, dog_count = list(map(int, input().split()))    
+# dog_count = 5
+# max_weight = 259
 input_list = [int(input()) for i in range(dog_count)]
+# input_list = [81, 58, 42, 33, 61]
+input_list_sum = sum(input_list)
 check_dog = {}
 target = 0
 for i in range(len(input_list)):
