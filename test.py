@@ -1,33 +1,22 @@
-'''1회 복습'''
-
 import sys
 
-sys.stdin = open(r"C:\Users\user\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 4\2. 랜선자르기\in1.txt")
+sys.stdin = open(r"C:\Users\my\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 8\1, 2. 네트워크 선 자르기")
 
-input_count, target = list(map(int, input().split()))
-input_list = [int(input()) for i in range(input_count)]
-min_value = 1
-max_value = max(input_list)
-mid_value = (min_value + max_value)//2
-
-while True:
+def dfs(level):
     
-    if min_value > max_value:
+    if memo_for_result[level] != 0:
         
-        break
-    count = 0
-    for i in input_list:
+        return memo_for_result[level]
+    if level == 1 or level == 2:
         
-        divided_result = i//mid_value
-        count = count + divided_result
-    if count < target:
-        
-        max_value = mid_value - 1
-        mid_value = (min_value + max_value)//2
-        
+        memo_for_result[level] = level
+        return level
     else:
         
-        min_value = mid_value + 1
-        mid_value = (min_value + max_value)//2
+        memo_for_result[level] = dfs(level - 1) + dfs(level - 2)
+        return memo_for_result[level]
     
-print(mid_value)
+input_value = int(input())
+memo_for_result = [0] * (input_value + 1)
+dfs(input_value)
+print(memo_for_result[input_value])
