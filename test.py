@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open(r"C:\Users\my\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 8\6. 가장 높은 탑 쌓기(LIS 응용)\in1.txt")
+sys.stdin = open(r"C:\Users\user\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 8\6. 가장 높은 탑 쌓기(LIS 응용)\in2.txt")
 
 input_count = int(input())
 input_list = [tuple(list(map(int, input().split()))) for i in range(input_count)]
@@ -30,12 +30,15 @@ for i in range(2, len(input_list)):
                 if candidate[1] > max_[1]:
                 
                     max_ = candidate
+
             else:
                 
                 candidate = memo[j]
                 if candidate[1] > max_[1]:
                 
-                    max_ = candidate  
+                    max_ = candidate
+
+                    
     memo[i] = max_
 memo[0] = (0, 0, 0)
 # print(memo)
