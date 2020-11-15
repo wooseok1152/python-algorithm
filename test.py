@@ -6,6 +6,18 @@ memo[1] = [[input_list[1]]]
 print("input_list :", input_list, len(input_list))
 print("memo :", memo,len(memo), "\n")
 
+<<<<<<< HEAD
+=======
+sys.stdin = open(r"C:\Users\user\Desktop\Documents\파이썬 알고리즘 문제풀이(코딩테스트 대비)\섹션 8\6. 가장 높은 탑 쌓기(LIS 응용)\in2.txt")
+
+input_count = int(input())
+input_list = [tuple(list(map(int, input().split()))) for i in range(input_count)]
+input_list.insert(0, (0,0,0))
+memo = [0] * len(input_list)
+memo[1] = input_list[1]
+# print("input_list :", input_list, len(input_list))
+# print("memo :", memo, len(memo), "\n")
+>>>>>>> 6bf5d8397fffd0cc3457acfa7c6d7251bab4397d
 
 for i in range(2, len(input_list)):
     
@@ -19,6 +31,7 @@ for i in range(2, len(input_list)):
             
             if target > memo[j][l][-1]:
                 
+<<<<<<< HEAD
                 picked = memo[j][l][:]
                 picked.append(target)
                 if len(picked) > max_length:
@@ -40,6 +53,22 @@ memo[0] = [[0]]
 final_max_len = len(memo[-1][0])
 final_result = []
 print(final_max_len)
+=======
+                    max_ = candidate
+
+            else:
+                
+                candidate = memo[j]
+                if candidate[1] > max_[1]:
+                
+                    max_ = candidate
+
+                    
+    memo[i] = max_
+memo[0] = (0, 0, 0)
+# print(memo)
+result = []
+>>>>>>> 6bf5d8397fffd0cc3457acfa7c6d7251bab4397d
 for i in memo:
     
     if len(i[0]) == final_max_len:
